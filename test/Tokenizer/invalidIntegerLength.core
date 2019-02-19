@@ -1,0 +1,9 @@
+program
+int X;
+begin 
+  X=1234567890;
+  while (X>10) loop
+    write X;
+    read X;
+    end;
+end
