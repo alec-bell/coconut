@@ -1,4 +1,4 @@
-class Id():
+class IdNode():
 
     def __init__(self, name):
         self.__name = name
@@ -27,5 +27,7 @@ class Id():
         t.nextToken()
 
         if token not in symbol_table:
-            Id id = new IdNode(token)
-            symbol_table[token] = idea
+            id = new IdNode(token.key)
+            symbol_table[token.key] = id
+
+        return symbol_table[token]

@@ -1,12 +1,6 @@
 import sys
 import re
 
-class Token:
-    def __init__(self, key, value, line_number):
-        self.key = key
-        self.value = value
-        self.line_number = line_number
-
 class Tokenizer:
     RESERVED_WORDS = {
         "program": 1,
@@ -63,7 +57,7 @@ class Tokenizer:
 
         if self.current_char == '':
             return ''
-        
+
         # Move to next non-whitespace character
         while re.match(self.REGEX_WHITESPACE, self.current_char):
             if self.current_char == '\n':

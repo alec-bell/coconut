@@ -5,15 +5,17 @@ class IdListNode(Node):
         self.__id_list = None
 
     def parse(self, t):
-        match_consume("int", t)
-        self.id_list.parse(t)
-        match_consume(";", t)
-        self.__id = Id.parse()
+        self.__id = IdNode.parse(t)
+        if t.currentToken().value == 15: # look-ahead, 15 = ","
+            match_consume(",", t)
+            self.__id_list = new IdListNode()
+            self.__id_list.parse(t)
 
     def print(self):
-        print "int ",
-        self.id_list.print()
-        print ";"
+        print self.__id.get_name(),
+        if self.__id_list != None:
+            print ", ",
+            self.__id_list.print(),
 
     def execute(self):
-        self.id_list.execute()
+        pass

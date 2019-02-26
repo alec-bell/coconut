@@ -37,7 +37,7 @@ def match_consume(expected, tokenizer):
 
     if expected in RESERVED_WORDS and RESERVED_WORDS[expected] == t.currentToken().value:
         t.nextToken()
-    else if expected in SPECIAL_SYMBOLS and SPECIAL_SYMBOLS[expected] == t.currentToken().value:
+    elif expected in SPECIAL_SYMBOLS and SPECIAL_SYMBOLS[expected] == t.currentToken().value:
         t.nextToken()
     else:
         print("Parse Error: [Line " + str(t.currentToken().line_number) + "] Unexpected word: '" + t.currentToken().key + "'")

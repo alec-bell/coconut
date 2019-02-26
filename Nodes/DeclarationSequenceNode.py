@@ -7,7 +7,7 @@ class DeclarationSequenceNode(Node):
     def parse(self, t):
         self.__d.parse(t)
         if t.currentToken().value == 4: # look-ahead, 4 = int
-            self.__ds = new DeclarationSequenceNode();
+            self.__ds = new DeclarationSequenceNode()
             self.__ds.parse(t)
 
     def print(self):
