@@ -1,9 +1,14 @@
+from Nodes.Node import Node
+from Nodes.FacNode import FacNode
+from Nodes.ComparisonOperatorNode import ComparisonOperatorNode
+from Nodes.Match import match_consume
+
 class ComparisonNode(Node):
 
     def __init__(self):
-        self.__fac1 = None
-        self.__fac2 = None
-        self.__comp_op = None
+        self.__fac1 = FacNode()
+        self.__fac2 = FacNode()
+        self.__comp_op = ComparisonOperatorNode()
 
     def parse(self, t):
         match_consume("(", t)
@@ -12,21 +17,12 @@ class ComparisonNode(Node):
         self.__fac2.parse(t)
         match_consume(")", t)
 
-    def print(self):
-        if self.__alt == 1:
-            self.__comp.print()
-        elif self.__alt == 2:
-            print "!",
-            self.__cond1.print()
-        else:
-            print "[ ",
-            self.__cond1.print()
-            if self.__alt == 3:
-                print " and ",
-            elif self.__alt == 4:
-                print " or ",
-            self.__cond2.print()
-            print " ]",
+    def printN(self):
+        print("( ", end='')
+        self.__fac1.printN()
+        self.__comp_op.printN()
+        self.__fac2.printN()
+        print(" )", end='')
 
     def execute(self):
         pass

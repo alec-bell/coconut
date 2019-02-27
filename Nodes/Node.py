@@ -7,7 +7,7 @@ class Node(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def print(self):
+    def printN(self):
         pass
 
     @abc.abstractmethod

@@ -1,21 +1,25 @@
+from Nodes.Node import Node
+from Nodes.FacNode import FacNode
+from Nodes.Match import match_consume
+
 class TermNode(Node):
 
     def __init__(self):
-        self.__fac = new FacNode()
+        self.__fac = FacNode()
         self.__t = None
 
     def parse(self, t):
         self.__fac.parse(t)
         if t.currentToken().value == 24: # *
             match_consume("*", t)
-            self.__t = new TermNode()
+            self.__t = TermNode()
             self.__t.parse(t)
 
-    def print(self):
-        self.__fac.print()
+    def printN(self):
+        self.__fac.printN()
         if self.__t is not None:
-            print " * ",
-            self.__t.print()
+            print(" * ", end='')
+            self.__t.printN()
 
     def execute(self):
         pass

@@ -1,3 +1,6 @@
+from Nodes.Node import Node
+from Nodes.Match import match_consume
+
 class ComparisonOperatorNode(Node):
 
     def __init__(self):
@@ -23,19 +26,19 @@ class ComparisonOperatorNode(Node):
             match_consume(">=", t)
             self.__alt = 6
 
-    def print(self):
+    def printN(self):
         if self.__alt == 1:
-            print "!=",
+            print("!=", end='')
         elif self.__alt == 2:
-            print "==",
+            print("==", end='')
         elif self.__alt == 3:
-            print "<",
+            print("<", end='')
         elif self.__alt == 4:
-            print ">",
+            print(">", end='')
         elif self.__alt == 5:
-            print "<=",
+            print("<=", end='')
         elif self.__alt == 6:
-            print ">=",
+            print(">=", end='')
 
     def execute(self):
         pass

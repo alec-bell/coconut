@@ -1,3 +1,8 @@
+from Nodes.Node import Node
+from Nodes.ComparisonNode import ComparisonNode
+from Nodes.ExpressionNode import ExpressionNode
+from Nodes.Match import match_consume
+
 class ConditionNode(Node):
 
     def __init__(self):
@@ -8,16 +13,16 @@ class ConditionNode(Node):
 
     def parse(self, t):
         if t.currentToken().value == 20: # (
-            self.__comp = new ComparisonNode()
+            self.__comp = ComparisonNode()
             self.__comp.parse(t)
             self.__alt = 1
         elif t.currentToken().value == 17: # !
-            self.__cond1 = new ConditionNode()
+            self.__cond1 = ConditionNode()
             self.__cond1.parse(t)
             self.__alt = 2
         elif t.currentToken().value == 18: # [
             match_consume("[", t)
-            self.__cond1 = new ExpressionNode()
+            self.__cond1 = ExpressionNode()
             self.__cond1.parse(t)
             if t.currentToken().value == 12: # and
                 match_consume("and", t)
@@ -25,25 +30,25 @@ class ConditionNode(Node):
             else: # or
                 match_consume("or", t)
                 self.__alt = 4
-            self.__cond2 = new ExpressionNode()
+            self.__cond2 = ExpressionNode()
             self.__cond2.parse(t)
             match_consume("]", t)
 
-    def print(self):
+    def printN(self):
         if self.__alt == 1:
-            self.__comp.print()
+            self.__comp.printN()
         elif self.__alt == 2:
-            print "!",
-            self.__cond1.print()
+            print("!", end='')
+            self.__cond1.printN()
         else:
-            print "[ ",
-            self.__cond1.print()
+            print("[ ", end='')
+            self.__cond1.printN()
             if self.__alt == 3:
-                print " and ",
+                print(" and ", end='')
             elif self.__alt == 4:
-                print " or ",
-            self.__cond2.print()
-            print " ]",
+                print(" or ", end='')
+            self.__cond2.printN()
+            print(" ]", end='')
 
     def execute(self):
         pass

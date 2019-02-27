@@ -1,3 +1,5 @@
+from Nodes.Match import symbol_table
+
 class IdNode():
 
     def __init__(self, name):
@@ -22,12 +24,12 @@ class IdNode():
         self.__declared = True
 
     @staticmethod
-    def parse(self, t):
+    def parse(t):
         token = t.currentToken()
         t.nextToken()
 
-        if token not in symbol_table:
-            id = new IdNode(token.key)
+        if token.key not in symbol_table:
+            id = IdNode(token.key)
             symbol_table[token.key] = id
 
-        return symbol_table[token]
+        return symbol_table[token.key]

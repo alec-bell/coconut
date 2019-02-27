@@ -1,3 +1,8 @@
+from Nodes.Node import Node
+from Nodes.IdNode import IdNode
+#from Nodes.ExpressionNode import ExpressionNode
+from Nodes.Match import match_consume, symbol_table
+
 class FacNode(Node):
 
     def __init__(self):
@@ -17,20 +22,20 @@ class FacNode(Node):
             self.__alt = 2
         elif t.currentToken().value == 20: # (
             match_consume("(", t)
-            self.__exp = new ExpressionNode()
+            self.__exp = ExpressionNode()
             self.__exp.parse(t)
             match_consume(")", t)
             self.__alt = 3
 
-    def print(self):
+    def printN(self):
         if self.__alt == 1:
-            print str(self.__int),
+            print(str(self.__int), end='')
         elif self.__alt == 2:
-            print self.__id.get_name(),
+            print(self.__id.get_name(), end='')
         elif self.__alt == 3:
-            print "( ",
-            self.__exp.print()
-            print " )"
+            print("( ", end='')
+            self.__exp.printN()
+            print(" )")
 
     def execute(self):
         pass

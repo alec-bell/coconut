@@ -1,4 +1,6 @@
-def match_consume(expected, tokenizer):
+symbol_table = dict()
+
+def match_consume(expected, t):
     RESERVED_WORDS = {
         "program": 1,
         "begin": 2,

@@ -1,4 +1,5 @@
 import sys
+from Token import Token
 import re
 
 class Tokenizer:
@@ -101,18 +102,3 @@ class Tokenizer:
         else:
             print("Error: [Line " + str(self.line_number) + "] Invalid ID token '" + key + "'")
             exit()
-
-tokenList = list()
-
-f = open(sys.argv[1],"r")
-tokenizer = Tokenizer(f)
-while True:
-    tokenList.append(tokenizer.currentToken())
-    if tokenizer.currentToken().value == 33:
-        break
-    else:
-        tokenizer.nextToken()
-f.close()
-
-for token in tokenList:
-    print token.value

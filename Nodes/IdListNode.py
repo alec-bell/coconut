@@ -1,3 +1,7 @@
+from Nodes.Node import Node
+from Nodes.IdNode import IdNode
+from Nodes.Match import match_consume
+
 class IdListNode(Node):
 
     def __init__(self):
@@ -8,14 +12,14 @@ class IdListNode(Node):
         self.__id = IdNode.parse(t)
         if t.currentToken().value == 15: # look-ahead, 15 = ","
             match_consume(",", t)
-            self.__id_list = new IdListNode()
+            self.__id_list = IdListNode()
             self.__id_list.parse(t)
 
-    def print(self):
-        print self.__id.get_name(),
+    def printN(self):
+        print(self.__id.get_name(), end='')
         if self.__id_list != None:
-            print ", ",
-            self.__id_list.print(),
+            print(", ", end='')
+            self.__id_list.printN()
 
     def execute(self):
         pass
