@@ -15,7 +15,7 @@ class TermNode(Node):
             self.__t = TermNode()
             self.__t.parse(t)
 
-    def printN(self):
+    def printN(self, shift=0):
         self.__fac.printN()
         if self.__t is not None:
             print(" * ", end='')

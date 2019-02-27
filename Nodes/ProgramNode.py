@@ -16,12 +16,12 @@ class ProgramNode(Node):
         self.__ss.parse(t)
         match_consume("end", t)
 
-    def printN(self):
-        print("program")
-        self.__ds.printN()
-        print("begin")
-        self.__ss.printN()
-        print("end")
+    def printN(self, shift=0):
+        print(shift*'  ' + "program")
+        self.__ds.printN(shift + 1)
+        print(shift*'  ' + "begin")
+        self.__ss.printN(shift + 1)
+        print(shift*'  ' + "end")
 
     def execute(self):
         self.__ds.execute()

@@ -24,15 +24,15 @@ class IfNode(Node):
         match_consume("end", t)
         match_consume(";", t)
 
-    def printN(self):
-        print("if ", end='')
+    def printN(self, shift=0):
+        print(shift*'  ' + "if ", end='')
         self.__cond.printN()
         print(" then")
-        self.__ss_true.printN()
+        self.__ss_true.printN(shift + 1)
         if self.__ss_false is not None:
-            print("else")
-            self.__ss_false.printN()
-        print("end;")
+            print(shift*'  ' + "else")
+            self.__ss_false.printN(shift + 1)
+        print(shift*'  ' + "end;")
 
     def execute(self):
         pass

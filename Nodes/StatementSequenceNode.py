@@ -14,10 +14,10 @@ class StatementSequenceNode(Node):
             self.__ss = StatementSequenceNode()
             self.__ss.parse(t)
 
-    def printN(self):
-        self.__s.printN()
+    def printN(self, shift=0):
+        self.__s.printN(shift)
         if self.__ss != None:
-            self.__ss.printN()
+            self.__ss.printN(shift)
 
     def execute(self):
         pass

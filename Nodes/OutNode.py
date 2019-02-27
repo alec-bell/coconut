@@ -12,8 +12,8 @@ class OutNode(Node):
         self.__id_list.parse(t)
         match_consume(";", t)
 
-    def printN(self):
-        print("write ", end='')
+    def printN(self, shift=0):
+        print(shift*'  ' + "write ", end='')
         self.__id_list.printN()
         print(";")
 

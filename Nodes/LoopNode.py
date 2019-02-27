@@ -7,6 +7,7 @@ class LoopNode(Node):
 
     def __init__(self):
         self.__cond = ConditionNode()
+        from Nodes.StatementSequenceNode import StatementSequenceNode
         self.__ss = StatementSequenceNode()
 
     def parse(self, t):
@@ -17,12 +18,12 @@ class LoopNode(Node):
         match_consume("end", t)
         match_consume(";", t)
 
-    def printN(self):
-        print("while ", end='')
+    def printN(self, shift=0):
+        print(shift*'  ' + "while ", end='')
         self.__cond.printN()
         print(" loop")
-        self.__ss.printN()
-        print("end;")
+        self.__ss.printN(shift + 1)
+        print(shift*'  ' + "end;")
 
     def execute(self):
         pass

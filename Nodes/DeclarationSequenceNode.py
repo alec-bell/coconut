@@ -13,10 +13,10 @@ class DeclarationSequenceNode(Node):
             self.__ds = DeclarationSequenceNode()
             self.__ds.parse(t)
 
-    def printN(self):
-        self.__d.printN()
+    def printN(self, shift=0):
+        self.__d.printN(shift)
         if self.__ds != None:
-            self.__ds.printN()
+            self.__ds.printN(shift)
 
     def execute(self):
         self.__d.execute()

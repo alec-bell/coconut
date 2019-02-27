@@ -21,7 +21,7 @@ class ExpressionNode(Node):
             self.__exp.parse(t)
             self.__alt = 3
 
-    def printN(self):
+    def printN(self, shift=0):
         self.__t.printN()
         if self.__exp is not None:
             if self.__alt == 2:

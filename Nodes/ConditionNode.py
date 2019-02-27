@@ -34,7 +34,7 @@ class ConditionNode(Node):
             self.__cond2.parse(t)
             match_consume("]", t)
 
-    def printN(self):
+    def printN(self, shift=0):
         if self.__alt == 1:
             self.__comp.printN()
         elif self.__alt == 2:

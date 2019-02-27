@@ -17,7 +17,7 @@ class StatementNode(Node):
             self.__n = AssignNode()
         elif token == 5: # if
             self.__n = IfNode()
-        elif token == 9: # loop
+        elif token == 8: # while
             self.__n = LoopNode()
         elif token == 10: # in
             self.__n = InNode()
@@ -29,8 +29,8 @@ class StatementNode(Node):
 
         self.__n.parse(t)
 
-    def printN(self):
-        self.__n.printN()
+    def printN(self, shift=0):
+        self.__n.printN(shift)
 
     def execute(self):
         pass

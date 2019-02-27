@@ -17,7 +17,7 @@ class ComparisonNode(Node):
         self.__fac2.parse(t)
         match_consume(")", t)
 
-    def printN(self):
+    def printN(self, shift=0):
         print("( ", end='')
         self.__fac1.printN()
         self.__comp_op.printN()

@@ -12,8 +12,8 @@ class InNode(Node):
         self.__id_list.parse(t)
         match_consume(";", t)
 
-    def printN(self):
-        print("read ", end='')
+    def printN(self, shift=0):
+        print(shift*'  ' + "read ", end='')
         self.__id_list.printN()
         print(";")
 

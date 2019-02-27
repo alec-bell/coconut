@@ -16,8 +16,8 @@ class AssignNode(Node):
         self.__id.set_value(self.__exp)
         match_consume(";", t)
 
-    def printN(self):
-        print(self.__id.get_name(), end='')
+    def printN(self, shift=0):
+        print(shift*'  ' + self.__id.get_name(), end='')
         print(" = ", end='')
         self.__exp.printN()
         print(";")

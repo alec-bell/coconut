@@ -26,7 +26,7 @@ class ComparisonOperatorNode(Node):
             match_consume(">=", t)
             self.__alt = 6
 
-    def printN(self):
+    def printN(self, shift=0):
         if self.__alt == 1:
             print("!=", end='')
         elif self.__alt == 2:

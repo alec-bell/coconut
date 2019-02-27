@@ -12,8 +12,8 @@ class DeclarationNode(Node):
         self.__id_list.parse(t)
         match_consume(";", t)
 
-    def printN(self):
-        print("int ", end='')
+    def printN(self, shift=0):
+        print(shift*'  ' + "int ", end='')
         self.__id_list.printN()
         print(";")
 

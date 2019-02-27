@@ -27,7 +27,7 @@ class FacNode(Node):
             match_consume(")", t)
             self.__alt = 3
 
-    def printN(self):
+    def printN(self, shift=0):
         if self.__alt == 1:
             print(str(self.__int), end='')
         elif self.__alt == 2:

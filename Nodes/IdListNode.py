@@ -15,7 +15,7 @@ class IdListNode(Node):
             self.__id_list = IdListNode()
             self.__id_list.parse(t)
 
-    def printN(self):
+    def printN(self, shift=0):
         print(self.__id.get_name(), end='')
         if self.__id_list != None:
             print(", ", end='')
