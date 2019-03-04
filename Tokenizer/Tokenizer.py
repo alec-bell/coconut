@@ -101,4 +101,4 @@ class Tokenizer:
         elif key == '':
             self.token = Token(key, self.TOKEN_VALUE_EOF, self.line_number)
         else:
-            report_error_invalid_id(t)
+            report_error_invalid_id(self, key)

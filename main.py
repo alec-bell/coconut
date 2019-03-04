@@ -3,7 +3,12 @@ from Tokenizer.Token import Token
 from Tokenizer.Tokenizer import Tokenizer
 from Nodes.ProgramNode import ProgramNode
 
-f = open(sys.argv[1],"r")
+try:
+    f = open(sys.argv[1],"r")
+except IOError:
+    print("Error: " + sys.argv[1] + " does not exist")
+    exit()
+
 tokenizer = Tokenizer(f)
 program = ProgramNode()
 program.parse(tokenizer)

@@ -13,3 +13,7 @@ def report_error_expected_eof(t):
 def report_error_expected_statement(t):
     print("Parse Error: [Line " + str(t.currentToken().line_number) + "] Expected statement but got: '" + t.currentToken().key + "'")
     exit()
+
+def report_error_match_consume(expected, t):
+    print("Parse Error [Line " + str(t.currentToken().line_number) + "]: Expected: '" + expected + "', but got: '"+ t.currentToken().key + "" + "'")
+    exit()

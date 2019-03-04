@@ -1,3 +1,5 @@
+from Nodes.Errors import report_error_match_consume
+
 symbol_table = dict()
 
 RESERVED_WORDS = {
@@ -46,5 +48,4 @@ def match_consume(expected, t):
     elif expected in SPECIAL_SYMBOLS and SPECIAL_SYMBOLS[expected] == t.currentToken().value:
         t.nextToken()
     else:
-        print("Parse Error [Line " + str(t.currentToken().line_number) + "]: Expected: '" + expected + "', but got: '"+ t.currentToken().key + "" + "'")
-        exit()
+        report_error_match_consume(expected, t)
