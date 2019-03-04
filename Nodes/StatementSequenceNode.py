@@ -1,6 +1,6 @@
 from Nodes.Node import Node
 from Nodes.StatementNode import StatementNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume, RESERVED_WORDS
 
 class StatementSequenceNode(Node):
 
@@ -10,14 +10,14 @@ class StatementSequenceNode(Node):
 
     def parse(self, t):
         self.__s.parse(t)
-        if t.currentToken().value != 3 and t.currentToken().value != 7: # look-ahead, 3 = end, 7 = else
+        if t.currentToken().value != RESERVED_WORDS["end"] and t.currentToken().value != RESERVED_WORDS["else"]:
             self.__ss = StatementSequenceNode()
             self.__ss.parse(t)
 
-    def printN(self, shift=0):
-        self.__s.printN(shift)
+    def pretty_print(self, shift=0):
+        self.__s.pretty_print(shift)
         if self.__ss != None:
-            self.__ss.printN(shift)
+            self.__ss.pretty_print(shift)
 
     def execute(self):
         pass

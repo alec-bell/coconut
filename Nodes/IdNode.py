@@ -1,4 +1,4 @@
-from Nodes.Match import symbol_table
+from Nodes.Parsing import symbol_table
 
 class IdNode():
 
@@ -30,6 +30,7 @@ class IdNode():
 
         if token.key not in symbol_table:
             id = IdNode(token.key)
+            id.set_declared()
             symbol_table[token.key] = id
 
         return symbol_table[token.key]

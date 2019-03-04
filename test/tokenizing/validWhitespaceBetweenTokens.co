@@ -1,0 +1,11 @@
+program
+int X , Y ;
+begin 
+  X = 13 ;
+  if ( X > 10) then
+    write X ;
+    read X ;
+  else
+    X = X + 1 ;
+  end;
+end

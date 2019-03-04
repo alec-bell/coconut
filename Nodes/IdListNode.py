@@ -1,6 +1,6 @@
 from Nodes.Node import Node
 from Nodes.IdNode import IdNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume, symbol_table, SPECIAL_SYMBOLS
 
 class IdListNode(Node):
 
@@ -10,16 +10,16 @@ class IdListNode(Node):
 
     def parse(self, t):
         self.__id = IdNode.parse(t)
-        if t.currentToken().value == 15: # look-ahead, 15 = ","
+        if t.currentToken().value == SPECIAL_SYMBOLS[","]:
             match_consume(",", t)
             self.__id_list = IdListNode()
             self.__id_list.parse(t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         print(self.__id.get_name(), end='')
         if self.__id_list != None:
             print(", ", end='')
-            self.__id_list.printN()
+            self.__id_list.pretty_print()
 
     def execute(self):
         pass

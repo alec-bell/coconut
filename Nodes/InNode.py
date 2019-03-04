@@ -1,6 +1,6 @@
 from Nodes.Node import Node
 from Nodes.IdListNode import IdListNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume
 
 class InNode(Node):
 
@@ -12,9 +12,9 @@ class InNode(Node):
         self.__id_list.parse(t)
         match_consume(";", t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         print(shift*'  ' + "read ", end='')
-        self.__id_list.printN()
+        self.__id_list.pretty_print()
         print(";")
 
     def execute(self):

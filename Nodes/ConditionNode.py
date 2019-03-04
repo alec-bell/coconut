@@ -1,7 +1,7 @@
 from Nodes.Node import Node
 from Nodes.ComparisonNode import ComparisonNode
 from Nodes.ExpressionNode import ExpressionNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume, SPECIAL_SYMBOLS, RESERVED_WORDS
 
 class ConditionNode(Node):
 
@@ -12,42 +12,43 @@ class ConditionNode(Node):
         self.__alt = 1
 
     def parse(self, t):
-        if t.currentToken().value == 20: # (
+        if t.currentToken().value == SPECIAL_SYMBOLS["("]:
             self.__comp = ComparisonNode()
             self.__comp.parse(t)
             self.__alt = 1
-        elif t.currentToken().value == 17: # !
+        elif t.currentToken().value == SPECIAL_SYMBOLS["!"]:
+            match_consume("!", t)
             self.__cond1 = ConditionNode()
             self.__cond1.parse(t)
             self.__alt = 2
-        elif t.currentToken().value == 18: # [
+        elif t.currentToken().value == SPECIAL_SYMBOLS["["]:
             match_consume("[", t)
-            self.__cond1 = ExpressionNode()
+            self.__cond1 = ConditionNode()
             self.__cond1.parse(t)
-            if t.currentToken().value == 12: # and
+            if t.currentToken().value == RESERVED_WORDS["and"]:
                 match_consume("and", t)
                 self.__alt = 3
             else: # or
                 match_consume("or", t)
                 self.__alt = 4
-            self.__cond2 = ExpressionNode()
+            self.__cond2 = ConditionNode()
             self.__cond2.parse(t)
             match_consume("]", t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         if self.__alt == 1:
-            self.__comp.printN()
+            self.__comp.pretty_print()
         elif self.__alt == 2:
             print("!", end='')
-            self.__cond1.printN()
+            self.__cond1.pretty_print()
         else:
             print("[ ", end='')
-            self.__cond1.printN()
+            self.__cond1.pretty_print()
             if self.__alt == 3:
                 print(" and ", end='')
             elif self.__alt == 4:
                 print(" or ", end='')
-            self.__cond2.printN()
+            self.__cond2.pretty_print()
             print(" ]", end='')
 
     def execute(self):

@@ -1,0 +1,10 @@
+program
+int X,Y;
+begin 
+  X=13;
+  while(X>10)loop
+    write X;
+    read X;
+    X=(X+13)*X-((X*3)-2*X);
+    end;
+end

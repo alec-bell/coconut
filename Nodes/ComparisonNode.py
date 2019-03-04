@@ -1,7 +1,7 @@
 from Nodes.Node import Node
 from Nodes.FacNode import FacNode
 from Nodes.ComparisonOperatorNode import ComparisonOperatorNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume
 
 class ComparisonNode(Node):
 
@@ -17,11 +17,11 @@ class ComparisonNode(Node):
         self.__fac2.parse(t)
         match_consume(")", t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         print("( ", end='')
-        self.__fac1.printN()
-        self.__comp_op.printN()
-        self.__fac2.printN()
+        self.__fac1.pretty_print()
+        self.__comp_op.pretty_print()
+        self.__fac2.pretty_print()
         print(" )", end='')
 
     def execute(self):

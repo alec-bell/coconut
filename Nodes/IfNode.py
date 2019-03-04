@@ -1,7 +1,6 @@
 from Nodes.Node import Node
 from Nodes.ConditionNode import ConditionNode
-#from Nodes.StatementSequenceNode import StatementSequenceNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume, RESERVED_WORDS
 
 class IfNode(Node):
 
@@ -16,7 +15,7 @@ class IfNode(Node):
         self.__cond.parse(t)
         match_consume("then", t)
         self.__ss_true.parse(t)
-        if t.currentToken().value == 7: # else
+        if t.currentToken().value == RESERVED_WORDS["else"]:
             match_consume("else", t)
             from Nodes.StatementSequenceNode import StatementSequenceNode
             self.__ss_false = StatementSequenceNode()
@@ -24,14 +23,14 @@ class IfNode(Node):
         match_consume("end", t)
         match_consume(";", t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         print(shift*'  ' + "if ", end='')
-        self.__cond.printN()
+        self.__cond.pretty_print()
         print(" then")
-        self.__ss_true.printN(shift + 1)
+        self.__ss_true.pretty_print(shift + 1)
         if self.__ss_false is not None:
             print(shift*'  ' + "else")
-            self.__ss_false.printN(shift + 1)
+            self.__ss_false.pretty_print(shift + 1)
         print(shift*'  ' + "end;")
 
     def execute(self):

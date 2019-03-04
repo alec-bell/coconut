@@ -1,6 +1,6 @@
 from Nodes.Node import Node
 from Nodes.FacNode import FacNode
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume, SPECIAL_SYMBOLS
 
 class TermNode(Node):
 
@@ -10,16 +10,16 @@ class TermNode(Node):
 
     def parse(self, t):
         self.__fac.parse(t)
-        if t.currentToken().value == 24: # *
+        if t.currentToken().value == SPECIAL_SYMBOLS["*"]:
             match_consume("*", t)
             self.__t = TermNode()
             self.__t.parse(t)
 
-    def printN(self, shift=0):
-        self.__fac.printN()
+    def pretty_print(self, shift=0):
+        self.__fac.pretty_print()
         if self.__t is not None:
             print(" * ", end='')
-            self.__t.printN()
+            self.__t.pretty_print()
 
     def execute(self):
         pass

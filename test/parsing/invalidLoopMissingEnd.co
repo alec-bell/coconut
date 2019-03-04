@@ -1,0 +1,8 @@
+program
+int X, Y;
+begin 
+  X=13;
+  while (X>10) loop
+    write X;
+    read X;
+end

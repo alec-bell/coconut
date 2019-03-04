@@ -1,6 +1,7 @@
 import sys
-from Token import Token
 import re
+from Tokenizer.Token import Token
+from Tokenizer.Errors import report_error_invalid_id
 
 class Tokenizer:
     RESERVED_WORDS = {
@@ -49,7 +50,7 @@ class Tokenizer:
 
     def __init__(self, file):
         self.file = file
-        self.line_number = 0 # Counter to keep track of current line number.
+        self.line_number = 1 # Counter to keep track of current line number.
         self.current_char = self.file.read(1)
         self.nextToken()
 
@@ -100,5 +101,4 @@ class Tokenizer:
         elif key == '':
             self.token = Token(key, self.TOKEN_VALUE_EOF, self.line_number)
         else:
-            print("Tokenizer Error: [Line " + str(self.line_number) + "] Invalid ID token '" + key + "'")
-            exit()
+            report_error_invalid_id(t)

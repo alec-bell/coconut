@@ -1,7 +1,8 @@
 from Nodes.Node import Node
 from Nodes.DeclarationSequenceNode import DeclarationSequenceNode
 from Nodes.StatementSequenceNode import StatementSequenceNode
-from Nodes.Match import match_consume, symbol_table
+from Nodes.Parsing import match_consume, symbol_table, TOKEN_VALUE_EOF
+from Nodes.Errors import report_error_expected_eof
 
 class ProgramNode(Node):
 
@@ -15,12 +16,14 @@ class ProgramNode(Node):
         match_consume("begin", t)
         self.__ss.parse(t)
         match_consume("end", t)
+        if t.currentToken().value != TOKEN_VALUE_EOF:
+            report_error_expected_eof(t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         print(shift*'  ' + "program")
-        self.__ds.printN(shift + 1)
+        self.__ds.pretty_print(shift + 1)
         print(shift*'  ' + "begin")
-        self.__ss.printN(shift + 1)
+        self.__ss.pretty_print(shift + 1)
         print(shift*'  ' + "end")
 
     def execute(self):

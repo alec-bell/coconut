@@ -1,5 +1,5 @@
 from Nodes.Node import Node
-from Nodes.Match import match_consume
+from Nodes.Parsing import match_consume, SPECIAL_SYMBOLS
 
 class ComparisonOperatorNode(Node):
 
@@ -7,38 +7,38 @@ class ComparisonOperatorNode(Node):
         self.__alt = 1
 
     def parse(self, t):
-        if t.currentToken().value == 25: # !=
+        if t.currentToken().value == SPECIAL_SYMBOLS["!="]:
             match_consume("!=", t)
             self.__alt = 1
-        elif t.currentToken().value == 26: # !=
+        elif t.currentToken().value == SPECIAL_SYMBOLS["=="]:
             match_consume("==", t)
             self.__alt = 2
-        elif t.currentToken().value == 30: # !=
+        elif t.currentToken().value == SPECIAL_SYMBOLS["<"]:
             match_consume("<", t)
             self.__alt = 3
-        elif t.currentToken().value == 29: # !=
+        elif t.currentToken().value == SPECIAL_SYMBOLS[">"]:
             match_consume(">", t)
             self.__alt = 4
-        elif t.currentToken().value == 28: # !=
+        elif t.currentToken().value == SPECIAL_SYMBOLS["<="]:
             match_consume("<=", t)
             self.__alt = 5
-        elif t.currentToken().value == 27: # !=
+        elif t.currentToken().value == SPECIAL_SYMBOLS[">="]:
             match_consume(">=", t)
             self.__alt = 6
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         if self.__alt == 1:
-            print("!=", end='')
+            print(" != ", end='')
         elif self.__alt == 2:
-            print("==", end='')
+            print(" == ", end='')
         elif self.__alt == 3:
-            print("<", end='')
+            print(" < ", end='')
         elif self.__alt == 4:
-            print(">", end='')
+            print(" > ", end='')
         elif self.__alt == 5:
-            print("<=", end='')
+            print(" <= ", end='')
         elif self.__alt == 6:
-            print(">=", end='')
+            print(" >= ", end='')
 
     def execute(self):
         pass

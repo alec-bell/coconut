@@ -1,7 +1,7 @@
 from Nodes.Node import Node
 from Nodes.IdNode import IdNode
-#from Nodes.ExpressionNode import ExpressionNode
-from Nodes.Match import match_consume, symbol_table
+from Nodes.Parsing import match_consume, symbol_table, TOKEN_VALUE_INTEGER, TOKEN_VALUE_IDENTIFIER, SPECIAL_SYMBOLS
+from Nodes.Errors import report_error_expected_expresion
 
 class FacNode(Node):
 
@@ -12,30 +12,33 @@ class FacNode(Node):
         self.__alt = 1
 
     def parse(self, t):
-        if t.currentToken().value == 31: # int
+        if t.currentToken().value == TOKEN_VALUE_INTEGER:
             self.__int = int(t.currentToken().key)
             t.nextToken()
             self.__alt = 1
-        elif t.currentToken().value == 32: # ID
+        elif t.currentToken().value == TOKEN_VALUE_IDENTIFIER:
             self.__id = symbol_table[t.currentToken().key]
             t.nextToken()
             self.__alt = 2
-        elif t.currentToken().value == 20: # (
+        elif t.currentToken().value == SPECIAL_SYMBOLS["("]:
             match_consume("(", t)
+            from Nodes.ExpressionNode import ExpressionNode
             self.__exp = ExpressionNode()
             self.__exp.parse(t)
             match_consume(")", t)
             self.__alt = 3
+        else:
+            report_error_expected_expresion(t)
 
-    def printN(self, shift=0):
+    def pretty_print(self, shift=0):
         if self.__alt == 1:
             print(str(self.__int), end='')
         elif self.__alt == 2:
             print(self.__id.get_name(), end='')
         elif self.__alt == 3:
             print("( ", end='')
-            self.__exp.printN()
-            print(" )")
+            self.__exp.pretty_print()
+            print(" )", end='')
 
     def execute(self):
         pass
