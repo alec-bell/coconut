@@ -1,0 +1,10 @@
+program
+  int X, Y, Z;
+  int S;
+  begin
+    read X, Y, Z;
+    S = X + (Y + Z);
+    if (X == 3) then
+      write S;
+    end;
+  end

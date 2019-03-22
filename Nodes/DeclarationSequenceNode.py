@@ -21,5 +21,5 @@ class DeclarationSequenceNode(Node):
 
     def execute(self):
         self.__d.execute()
-        if self.__ds != None:
+        if self.__ds is not None:
             self.__ds.execute()

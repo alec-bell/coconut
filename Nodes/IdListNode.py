@@ -1,6 +1,7 @@
 from Nodes.Node import Node
 from Nodes.IdNode import IdNode
 from Nodes.Parsing import match_consume, symbol_table, SPECIAL_SYMBOLS
+import sys
 
 class IdListNode(Node):
 
@@ -23,3 +24,14 @@ class IdListNode(Node):
 
     def execute(self):
         pass
+
+    def read(self):
+        val = input(self.__id.get_name() + " =? ")
+        self.__id.set_value(int(val))
+        if self.__id_list is not None:
+            self.__id_list.read()
+
+    def write(self):
+        print(self.__id.get_name() + " = " + str(self.__id.get_value()))
+        if self.__id_list is not None:
+            self.__id_list.write()

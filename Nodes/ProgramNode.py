@@ -20,11 +20,11 @@ class ProgramNode(Node):
             report_error_expected_eof(t)
 
     def pretty_print(self, shift=0):
-        print(shift*'  ' + "program")
+        print(shift*'  ' + "program ")
         self.__ds.pretty_print(shift + 1)
-        print(shift*'  ' + "begin")
-        self.__ss.pretty_print(shift + 1)
-        print(shift*'  ' + "end")
+        print((shift + 1)*'  ' + "begin")
+        self.__ss.pretty_print(shift + 2)
+        print((shift + 1)*'  ' + "end")
 
     def execute(self):
         self.__ds.execute()

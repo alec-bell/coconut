@@ -18,4 +18,4 @@ class DeclarationNode(Node):
         print(";")
 
     def execute(self):
-        self.__id_list.execute()
+        pass

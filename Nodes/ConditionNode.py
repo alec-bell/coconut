@@ -53,3 +53,13 @@ class ConditionNode(Node):
 
     def execute(self):
         pass
+
+    def evaluate(self):
+        if self.__alt == 1:
+            return self.__comp.evaluate()
+        elif self.__alt == 2:
+            return not self.__cond1.evaluate()
+        elif self.__alt == 3:
+            return self.__cond1.evaluate() and self.__cond2.evaluate()
+        else:
+            return self.__cond1.evaluate() or self.__cond2.evaluate()

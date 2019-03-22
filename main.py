@@ -12,4 +12,5 @@ except IOError:
 tokenizer = Tokenizer(f)
 program = ProgramNode()
 program.parse(tokenizer)
-program.pretty_print()
+#program.pretty_print()
+program.execute()

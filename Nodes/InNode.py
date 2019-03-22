@@ -18,4 +18,4 @@ class InNode(Node):
         print(";")
 
     def execute(self):
-        pass
+        self.__id_list.read()

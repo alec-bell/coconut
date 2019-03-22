@@ -26,4 +26,5 @@ class LoopNode(Node):
         print(shift*'  ' + "end;")
 
     def execute(self):
-        pass
+        while self.__cond is True:
+            self.__ss.execute()

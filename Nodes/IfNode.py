@@ -34,4 +34,8 @@ class IfNode(Node):
         print(shift*'  ' + "end;")
 
     def execute(self):
-        pass
+        if self.__cond.evaluate() is True:
+            self.__ss_true.execute()
+        else:
+            if self.__ss_false is not None:
+                self.__ss_false.execute()

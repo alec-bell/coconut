@@ -33,3 +33,11 @@ class ExpressionNode(Node):
 
     def execute(self):
         pass
+
+    def evaluate(self):
+        if self.__alt == 1:
+            return self.__t.evaluate()
+        elif self.__alt == 2:
+            return self.__t.evaluate() + self.__exp.evaluate()
+        else:
+            return self.__t.evaluate() - self.__exp.evaluate()

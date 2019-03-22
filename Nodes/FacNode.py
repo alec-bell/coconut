@@ -42,3 +42,11 @@ class FacNode(Node):
 
     def execute(self):
         pass
+
+    def evaluate(self):
+        if self.__alt == 1:
+            return self.__int
+        elif self.__alt == 2:
+            return self.__id.get_value()
+        elif self.__alt == 3:
+            return self.__exp.evaluate()

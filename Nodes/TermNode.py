@@ -23,3 +23,9 @@ class TermNode(Node):
 
     def execute(self):
         pass
+
+    def evaluate(self):
+        if self.__t is None:
+            return self.__fac.evaluate()
+        else:
+            return self.__fac.evaluate() * self.__t.evaluate()

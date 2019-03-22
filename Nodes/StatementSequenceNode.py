@@ -20,4 +20,6 @@ class StatementSequenceNode(Node):
             self.__ss.pretty_print(shift)
 
     def execute(self):
-        pass
+        self.__s.execute()
+        if self.__ss is not None:
+            self.__ss.execute()

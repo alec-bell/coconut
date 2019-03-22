@@ -33,4 +33,4 @@ class StatementNode(Node):
         self.__n.pretty_print(shift)
 
     def execute(self):
-        pass
+        self.__n.execute()
