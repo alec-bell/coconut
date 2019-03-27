@@ -1,9 +1,10 @@
 from Nodes.Node import Node
+from Nodes.Evaluable import Evaluable
 from Nodes.ComparisonNode import ComparisonNode
 from Nodes.ExpressionNode import ExpressionNode
 from Nodes.Parsing import match_consume, SPECIAL_SYMBOLS, RESERVED_WORDS
 
-class ConditionNode(Node):
+class ConditionNode(Node, Evaluable):
 
     def __init__(self):
         self.__comp = None
@@ -51,9 +52,6 @@ class ConditionNode(Node):
             self.__cond2.pretty_print()
             print(" ]", end='')
 
-    def execute(self):
-        pass
-
     def evaluate(self):
         if self.__alt == 1:
             return self.__comp.evaluate()
@@ -61,5 +59,5 @@ class ConditionNode(Node):
             return not self.__cond1.evaluate()
         elif self.__alt == 3:
             return self.__cond1.evaluate() and self.__cond2.evaluate()
-        else:
+        elif self.__alt == 4:
             return self.__cond1.evaluate() or self.__cond2.evaluate()

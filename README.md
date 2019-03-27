@@ -5,6 +5,7 @@ The Coconut programming language.
 ```
 $ python3 main.py <your-.co-file>
 ```
+Check it out with `python3 main.py test/interpreter/validLoopProgram.co`.
 
 ## BNF
 ```

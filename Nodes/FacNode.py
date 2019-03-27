@@ -1,9 +1,10 @@
 from Nodes.Node import Node
+from Nodes.Evaluable import Evaluable
 from Nodes.IdNode import IdNode
 from Nodes.Parsing import match_consume, symbol_table, TOKEN_VALUE_INTEGER, TOKEN_VALUE_IDENTIFIER, SPECIAL_SYMBOLS
 from Nodes.Errors import report_error_expected_expresion
 
-class FacNode(Node):
+class FacNode(Node, Evaluable):
 
     def __init__(self):
         self.__int = None
@@ -39,9 +40,6 @@ class FacNode(Node):
             print("( ", end='')
             self.__exp.pretty_print()
             print(" )", end='')
-
-    def execute(self):
-        pass
 
     def evaluate(self):
         if self.__alt == 1:

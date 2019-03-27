@@ -1,10 +1,11 @@
 from Nodes.Node import Node
+from Nodes.Executable import Executable
 from Nodes.DeclarationSequenceNode import DeclarationSequenceNode
 from Nodes.StatementSequenceNode import StatementSequenceNode
 from Nodes.Parsing import match_consume, symbol_table, TOKEN_VALUE_EOF
 from Nodes.Errors import report_error_expected_eof
 
-class ProgramNode(Node):
+class ProgramNode(Node, Executable):
 
     def __init__(self):
         self.__ds = DeclarationSequenceNode()
@@ -27,5 +28,4 @@ class ProgramNode(Node):
         print((shift + 1)*'  ' + "end")
 
     def execute(self):
-        self.__ds.execute()
         self.__ss.execute()

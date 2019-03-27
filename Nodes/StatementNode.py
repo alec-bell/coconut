@@ -1,4 +1,5 @@
 from Nodes.Node import Node
+from Nodes.Executable import Executable
 from Nodes.AssignNode import AssignNode
 from Nodes.IfNode import IfNode
 from Nodes.LoopNode import LoopNode
@@ -7,7 +8,7 @@ from Nodes.OutNode import OutNode
 from Nodes.Parsing import match_consume, TOKEN_VALUE_IDENTIFIER, RESERVED_WORDS
 from Nodes.Errors import report_error_expected_statement
 
-class StatementNode(Node):
+class StatementNode(Node, Executable):
 
     def __init__(self):
         self.__n = None

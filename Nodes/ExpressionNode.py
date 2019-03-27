@@ -1,8 +1,9 @@
 from Nodes.Node import Node
+from Nodes.Evaluable import Evaluable
 from Nodes.TermNode import TermNode
 from Nodes.Parsing import SPECIAL_SYMBOLS
 
-class ExpressionNode(Node):
+class ExpressionNode(Node, Evaluable):
 
     def __init__(self):
         self.__t = TermNode()
@@ -30,9 +31,6 @@ class ExpressionNode(Node):
             elif self.__alt == 3:
                 print(" - ", end='')
             self.__exp.pretty_print()
-
-    def execute(self):
-        pass
 
     def evaluate(self):
         if self.__alt == 1:

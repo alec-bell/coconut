@@ -1,9 +1,9 @@
 from Nodes.Node import Node
+from Nodes.Evaluable import Evaluable
 from Nodes.FacNode import FacNode
-from Nodes.ComparisonOperatorNode import ComparisonOperatorNode
-from Nodes.Parsing import match_consume
+from Nodes.Parsing import match_consume, SPECIAL_SYMBOLS
 
-class ComparisonNode(Node):
+class ComparisonNode(Node, Evaluable):
 
     def __init__(self):
         self.__fac1 = FacNode()
@@ -51,9 +51,6 @@ class ComparisonNode(Node):
             print(" >= ", end='')
         self.__fac2.pretty_print()
         print(" )", end='')
-
-    def execute(self):
-        pass
 
     def evaluate(self):
         if self.__alt == 1:

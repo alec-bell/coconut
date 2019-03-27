@@ -11,8 +11,3 @@ class Node(abc.ABC):
     def pretty_print(self, shift=0):
         """Print the code represented by a node in an attractive format, indenting :shift times."""
         pass
-
-    @abc.abstractmethod
-    def execute(self):
-        """Execute the processes represented by a node."""
-        pass

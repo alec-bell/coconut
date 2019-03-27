@@ -16,6 +16,3 @@ class DeclarationNode(Node):
         print(shift*'  ' + "int ", end='')
         self.__id_list.pretty_print()
         print(";")
-
-    def execute(self):
-        pass

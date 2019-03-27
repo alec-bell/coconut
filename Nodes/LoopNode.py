@@ -1,9 +1,9 @@
 from Nodes.Node import Node
+from Nodes.Executable import Executable
 from Nodes.ConditionNode import ConditionNode
-#from Nodes.StatementSequenceNode import StatementSequenceNode
 from Nodes.Parsing import match_consume
 
-class LoopNode(Node):
+class LoopNode(Node, Executable):
 
     def __init__(self):
         self.__cond = ConditionNode()
@@ -26,5 +26,5 @@ class LoopNode(Node):
         print(shift*'  ' + "end;")
 
     def execute(self):
-        while self.__cond is True:
+        while self.__cond.evaluate() is True:
             self.__ss.execute()

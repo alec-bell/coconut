@@ -48,10 +48,15 @@ class Tokenizer:
     TOKEN_VALUE_IDENTIFIER = 32
     TOKEN_VALUE_EOF = 33
 
-    def __init__(self, file):
-        self.file = file
+    def __init__(self, file=None, str=None):
+        if file is not None:
+            self.file = file
+            self.alt = 1
+        elif str is not None:
+            self.str = str
+            self.alt = 2
         self.line_number = 1 # Counter to keep track of current line number.
-        self.current_char = self.file.read(1)
+        self.current_char = self.currentChar()
         self.nextToken()
 
     def nextTokenKey(self):
@@ -64,7 +69,7 @@ class Tokenizer:
         while re.match(self.REGEX_WHITESPACE, self.current_char):
             if self.current_char == '\n':
                 self.line_number += 1
-            self.current_char = self.file.read(1)
+            self.current_char = self.currentChar()
 
         key = ""
         # Special symbols
@@ -73,14 +78,25 @@ class Tokenizer:
             self.current_char = self.file.read(1)
             if key + self.current_char in self.SPECIAL_SYMBOLS:
                 key += self.current_char
-                self.current_char = self.file.read(1)
+                self.current_char = self.currentChar()
         # All other possible tokens
         else:
             while not re.match(self.REGEX_WHITESPACE, self.current_char) and self.current_char not in self.SPECIAL_SYMBOLS and self.current_char != '':
                 key += self.current_char
-                self.current_char = self.file.read(1)
+                self.current_char = self.currentChar()
 
         return key
+
+    def currentChar(self):
+        if self.alt == 1:
+            return self.file.read(1)
+        else:
+            if len(self.str) > 0:
+                char = self.str[0]
+                self.str = self.str[1:]
+            else:
+                char = ''
+            return char
 
     def currentToken(self):
         """Return the current token object."""

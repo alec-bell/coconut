@@ -1,8 +1,9 @@
 from Nodes.Node import Node
+from Nodes.Executable import Executable
 from Nodes.StatementNode import StatementNode
 from Nodes.Parsing import match_consume, RESERVED_WORDS
 
-class StatementSequenceNode(Node):
+class StatementSequenceNode(Node, Executable):
 
     def __init__(self):
         self.__s = StatementNode()

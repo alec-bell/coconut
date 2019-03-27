@@ -1,8 +1,9 @@
 from Nodes.Node import Node
+from Nodes.Executable import Executable
 from Nodes.ConditionNode import ConditionNode
 from Nodes.Parsing import match_consume, RESERVED_WORDS
 
-class IfNode(Node):
+class IfNode(Node, Executable):
 
     def __init__(self):
         self.__cond = ConditionNode()

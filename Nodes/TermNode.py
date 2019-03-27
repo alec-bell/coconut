@@ -1,8 +1,9 @@
 from Nodes.Node import Node
+from Nodes.Evaluable import Evaluable
 from Nodes.FacNode import FacNode
 from Nodes.Parsing import match_consume, SPECIAL_SYMBOLS
 
-class TermNode(Node):
+class TermNode(Node, Evaluable):
 
     def __init__(self):
         self.__fac = FacNode()
@@ -20,9 +21,6 @@ class TermNode(Node):
         if self.__t is not None:
             print(" * ", end='')
             self.__t.pretty_print()
-
-    def execute(self):
-        pass
 
     def evaluate(self):
         if self.__t is None:

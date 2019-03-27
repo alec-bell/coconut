@@ -18,8 +18,3 @@ class DeclarationSequenceNode(Node):
         self.__d.pretty_print(shift)
         if self.__ds != None:
             self.__ds.pretty_print(shift)
-
-    def execute(self):
-        self.__d.execute()
-        if self.__ds is not None:
-            self.__ds.execute()

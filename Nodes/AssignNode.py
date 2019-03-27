@@ -1,9 +1,10 @@
 from Nodes.Node import Node
+from Nodes.Executable import Executable
 from Nodes.ExpressionNode import ExpressionNode
 from Nodes.Parsing import match_consume, symbol_table
 from Nodes.Errors import report_error_undeclared_identifier
 
-class AssignNode(Node):
+class AssignNode(Node, Executable):
 
     def __init__(self):
         self.__id = None
@@ -16,7 +17,6 @@ class AssignNode(Node):
         t.nextToken()
         match_consume("=", t)
         self.__exp.parse(t)
-        self.__id.set_value(self.__exp)
         match_consume(";", t)
 
     def pretty_print(self, shift=0):
@@ -26,4 +26,4 @@ class AssignNode(Node):
         print(";")
 
     def execute(self):
-        pass
+        self.__id.set_value(self.__exp.evaluate())
