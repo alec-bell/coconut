@@ -12,6 +12,7 @@ class ProgramNode(Node, Executable):
         self.__ss = StatementSequenceNode()
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         match_consume("program", t)
         self.__ds.parse(t)
         match_consume("begin", t)

@@ -4,7 +4,7 @@ program
   begin
     read X, Y, Z;
     S = X + (Y + Z);
-    if (S < 0) then
+    if (S > 0) then
       write S;
     end;
   end

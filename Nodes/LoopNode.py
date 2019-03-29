@@ -11,6 +11,7 @@ class LoopNode(Node, Executable):
         self.__ss = StatementSequenceNode()
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         match_consume("while", t)
         self.__cond.parse(t)
         match_consume("loop", t)

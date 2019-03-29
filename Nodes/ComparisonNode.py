@@ -11,6 +11,7 @@ class ComparisonNode(Node, Evaluable):
         self.__alt = 1
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         match_consume("(", t)
         self.__fac1.parse(t)
         if t.currentToken().value == SPECIAL_SYMBOLS["!="]:

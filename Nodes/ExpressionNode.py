@@ -11,6 +11,7 @@ class ExpressionNode(Node, Evaluable):
         self.__alt = 1
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         self.__t.parse(t)
         if t.currentToken().value == SPECIAL_SYMBOLS["+"]:
             t.nextToken()

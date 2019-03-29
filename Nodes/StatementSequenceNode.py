@@ -10,6 +10,7 @@ class StatementSequenceNode(Node, Executable):
         self.__ss = None
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         self.__s.parse(t)
         if t.currentToken().value != RESERVED_WORDS["end"] and t.currentToken().value != RESERVED_WORDS["else"]:
             self.__ss = StatementSequenceNode()

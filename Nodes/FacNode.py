@@ -13,6 +13,7 @@ class FacNode(Node, Evaluable):
         self.__alt = 1
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         if t.currentToken().value == TOKEN_VALUE_INTEGER:
             self.__int = int(t.currentToken().key)
             t.nextToken()

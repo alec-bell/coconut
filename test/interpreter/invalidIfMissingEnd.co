@@ -1,0 +1,12 @@
+program
+int X,Y;
+begin 
+  X=13;
+  Y=0;
+  if (X>10) then
+    write X,Y;
+    X=X-1;
+  else
+    write Y,X;
+    X=X+1;
+end

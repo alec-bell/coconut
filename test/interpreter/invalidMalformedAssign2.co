@@ -1,0 +1,7 @@
+program
+int X,Y;
+begin 
+  X=13;
+  Y=0;
+  =X+1;
+end

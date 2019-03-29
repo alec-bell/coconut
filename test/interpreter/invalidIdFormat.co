@@ -1,0 +1,9 @@
+program
+int A1234B;
+begin 
+  X=13;
+  while (X>10) loop
+    write X;
+    read X;
+    end;
+end

@@ -11,6 +11,7 @@ class AssignNode(Node, Executable):
         self.__exp = ExpressionNode()
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         if t.currentToken().key not in symbol_table:
             report_error_undeclared_identifier(t)
         self.__id = symbol_table[t.currentToken().key]

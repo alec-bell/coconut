@@ -17,3 +17,15 @@ def report_error_expected_statement(t):
 def report_error_match_consume(expected, t):
     print("Parse Error [Line " + str(t.currentToken().line_number) + "]: Expected: '" + expected + "', but got: '"+ t.currentToken().key + "" + "'")
     exit()
+
+def report_error_uninitialized_identifier(id):
+    print("Run-time Error: Identifier \'" + id.get_name() + "\' must be initialized before it can be used.")
+    exit()
+
+def report_error_duplicate_identifier(t):
+    print("Parse Error: [Line " + str(t.currentToken().line_number) + "] Duplicate declaration of identifier: '" + t.currentToken().key + "'")
+    exit()
+
+def report_error_not_an_int(id, val):
+    print("Run-time Error: Value of \'" + id.get_name() + "\' must be set to an int, not \'" + val + "\'")
+    exit()

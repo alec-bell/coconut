@@ -9,6 +9,7 @@ class DeclarationSequenceNode(Node):
         self.__ds = None
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         self.__d.parse(t)
         if t.currentToken().value == RESERVED_WORDS["int"]:
             self.__ds = DeclarationSequenceNode()

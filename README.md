@@ -3,9 +3,15 @@ The Coconut programming language.
 
 ## Execute
 ```
-$ python3 main.py <your-.co-file>
+$ python3 interpreter.py <your-.co-file>
 ```
-Check it out with `python3 main.py test/interpreter/validLoopProgram.co`.
+If you're just trying to check it out, you can get it started quickly by running the following command: `$ python3 interpreter.py test/interpreter/validLoopProgram.co`.
+
+## Pretty Print
+```
+$ python3 pretty_print.py <your-.co-file>
+```
+Again, you can try it out with the test file above. Try running: `$ python3 pretty_print.py test/interpreter/validLoopProgram.co`.
 
 ## BNF
 ```

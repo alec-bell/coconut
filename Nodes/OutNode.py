@@ -9,6 +9,7 @@ class OutNode(Node, Executable):
         self.__id_list = IdListNode()
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         match_consume("write", t)
         self.__id_list.parse(t)
         match_consume(";", t)

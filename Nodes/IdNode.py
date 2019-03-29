@@ -1,4 +1,5 @@
 from Nodes.Parsing import symbol_table
+from Nodes.Errors import report_error_uninitialized_identifier, report_error_undeclared_identifier, report_error_not_an_int, report_error_duplicate_identifier
 
 class IdNode():
 
@@ -12,6 +13,8 @@ class IdNode():
         self.__initialized = True
 
     def get_value(self):
+        if self.__initialized is False:
+            report_error_uninitialized_identifier(self)
         return self.__value
 
     def get_name(self):
@@ -25,12 +28,22 @@ class IdNode():
 
     @staticmethod
     def parse(t):
+        if t.currentToken().key not in symbol_table:
+            report_error_undeclared_identifier(t)
+
         token = t.currentToken()
         t.nextToken()
 
-        if token.key not in symbol_table:
-            id = IdNode(token.key)
-            id.set_declared()
-            symbol_table[token.key] = id
-
         return symbol_table[token.key]
+
+    @staticmethod
+    def parse_decl(t):
+        if t.currentToken().key in symbol_table:
+            report_error_duplicate_identifier(t)
+
+        id = IdNode(t.currentToken().key)
+        id.set_declared()
+        symbol_table[t.currentToken().key] = id
+        t.nextToken()
+
+        return id

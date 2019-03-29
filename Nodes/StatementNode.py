@@ -14,6 +14,7 @@ class StatementNode(Node, Executable):
         self.__n = None
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         token = t.currentToken().value
         if token == TOKEN_VALUE_IDENTIFIER:
             self.__n = AssignNode()

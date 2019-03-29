@@ -1,11 +1,12 @@
 program
-      int X, Y;
+      int X, Y, Z;
 begin
   X=    0;
 read Y;
+Z = Y;
   while (X < 5) loop
     X = X + 1;
-    Y = Y * Y;
+    Y = Y * Z;
     write Y;
           end;
 end

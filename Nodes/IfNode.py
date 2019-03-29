@@ -12,6 +12,7 @@ class IfNode(Node, Executable):
         self.__ss_false = None
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         match_consume("if", t)
         self.__cond.parse(t)
         match_consume("then", t)

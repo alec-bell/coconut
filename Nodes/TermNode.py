@@ -10,6 +10,7 @@ class TermNode(Node, Evaluable):
         self.__t = None
 
     def parse(self, t):
+        self.__line_number = t.currentToken().line_number
         self.__fac.parse(t)
         if t.currentToken().value == SPECIAL_SYMBOLS["*"]:
             match_consume("*", t)
